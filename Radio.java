@@ -1,14 +1,17 @@
 public class Radio implements IRatio {
 
-    private double newPostion = 530;
+    private double newPosition;
     //Encendido = true; Apagado = false
-    private boolean on_off = false;
+    private boolean on_off;
     //FM = true, AM = false
-    private boolean frecuencia = false;
+    private boolean frecuencia;
     private double[] control_remoto_fm = new double[12];
     private double[] control_remoto_am = new double[12];
 
     public Radio() {
+        this.newPosition = 530;
+        this.on_off = false;
+        this.frecuencia = false;
         for(int i = 0; i < 12; i++) {
             this.control_remoto_fm[i] = 0.0;
             this.control_remoto_am[i] = 0.0;
@@ -30,19 +33,19 @@ public class Radio implements IRatio {
         String mensaje = "";
         if(this.frecuencia) {
             mensaje = "Frecuencia actual: FM, Emisora: 87.9";
-            this.newPostion = 87.9;
+            this.newPosition = 87.9;
         } else {
             mensaje = "Frecuencia actual: AM, Emisora: 530";
-            this.newPostion = 530;
+            this.newPosition = 530;
         }
         return mensaje;
     }
 
     public String saveStation(int numero_estacion) {
         if(this.frecuencia)
-            this.control_remoto_fm[numero_estacion] = this.newPostion;    
+            this.control_remoto_fm[numero_estacion] = this.newPosition;    
         else 
-            this.control_remoto_am[numero_estacion] = this.newPostion;
+            this.control_remoto_am[numero_estacion] = this.newPosition;
         return "Emisora guardada exitosamente";
     }
 
@@ -51,44 +54,44 @@ public class Radio implements IRatio {
             if(this.control_remoto_fm[numero_estacion] == 0)
                 return "No hay emisora guardada en este botón.";
             else
-                this.newPostion = this.control_remoto_fm[numero_estacion];    
+                this.newPosition = this.control_remoto_fm[numero_estacion];    
         else 
             if(this.control_remoto_am[numero_estacion] == 0)
                 return "No hay emisora guardada en este botón.";
             else
-                this.newPostion = this.control_remoto_am[numero_estacion];
-        return "Seleccionó la emisora: " + this.newPostion;
+                this.newPosition = this.control_remoto_am[numero_estacion];
+        return "Seleccionó la emisora: " + this.newPosition;
     }
 
     @Override
     public String moveDial(int tipo_movimiento) {
         if(this.frecuencia) {
             if(tipo_movimiento == 1) {
-                if(this.newPostion == 107.9)
-                    this.newPostion = 87.9;
+                if(this.newPosition == 107.9)
+                    this.newPosition = 87.9;
                 else 
-                    this.newPostion += 0.2;
+                    this.newPosition += 0.2;
             } else {
-                if(this.newPostion == 87.9)
-                    this.newPostion = 107.9;
+                if(this.newPosition == 87.9)
+                    this.newPosition = 107.9;
                 else 
-                    this.newPostion -= 0.2;
+                    this.newPosition -= 0.2;
             }
         } else {
             if(tipo_movimiento == 1) {
-                if(this.newPostion == 1610)
-                    this.newPostion = 530;
+                if(this.newPosition == 1610)
+                    this.newPosition = 530;
                 else 
-                    this.newPostion += 10;
+                    this.newPosition += 10;
             } else {
-                if(this.newPostion == 530)
-                    this.newPostion = 1610;
+                if(this.newPosition == 530)
+                    this.newPosition = 1610;
                 else 
-                    this.newPostion -= 10;
+                    this.newPosition -= 10;
             }
         }
-        this.newPostion = Math.round(this.newPostion * 100.0)/100.0;
-        return "Estación actual: " + this.newPostion;
+        this.newPosition = Math.round(this.newPosition * 100.0)/100.0;
+        return "Estación actual: " + this.newPosition;
     }
 
     @Override
