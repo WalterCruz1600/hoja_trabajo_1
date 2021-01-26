@@ -54,13 +54,15 @@ public class Radio implements IRatio {
             estaciones = control_remoto_fm;
         else
             estaciones = control_remoto_am;
-        for(double a: estaciones) {
+        for(int i = 0; i < estaciones.length; i++) {
             String s = "";
-            if(a == 0)
+            if(estaciones[i] == 0)
                 s = "Sin asignación";
             else
-                s = String.valueOf(a);
-            respuesta = respuesta + " - " + s;
+                s = String.valueOf(estaciones[i]);
+            respuesta = respuesta + s;
+            if((i + 1) < estaciones.length)
+                respuesta = respuesta  + " - ";
         }
         return respuesta;
     }
