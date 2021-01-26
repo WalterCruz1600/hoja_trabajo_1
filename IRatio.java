@@ -1,4 +1,8 @@
 public interface IRatio{
-	public String moveDial(int tipo_movimiento);//cambiar emisora
-	public String checkStatus();//REVISA ENCENDIDO Y APAGADO
+	public String onOff();
+	public String changeFrecuency();
+	public String saveStation(int numero_estacion);
+	public String selectStation(int numero_estacion);
+	public String moveDial(int tipo_movimiento);
+	
 }

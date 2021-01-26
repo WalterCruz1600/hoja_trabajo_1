@@ -18,6 +18,7 @@ public class Radio implements IRatio {
         }
     }
 
+    @Override
     public String onOff() {
         this.on_off = !this.on_off;
         String mensaje = "";
@@ -28,6 +29,7 @@ public class Radio implements IRatio {
         return mensaje;
     }
 
+    @Override
     public String changeFrecuency() {
         this.frecuencia = !this.frecuencia;
         String mensaje = "";
@@ -41,6 +43,7 @@ public class Radio implements IRatio {
         return mensaje;
     }
 
+    @Override
     public String saveStation(int numero_estacion) {
         if(this.frecuencia)
             this.control_remoto_fm[numero_estacion] = this.newPosition;    
@@ -49,6 +52,7 @@ public class Radio implements IRatio {
         return "Emisora guardada exitosamente";
     }
 
+    @Override
     public String selectStation(int numero_estacion) {
         if(this.frecuencia)
             if(this.control_remoto_fm[numero_estacion] == 0)
@@ -93,13 +97,5 @@ public class Radio implements IRatio {
         this.newPosition = Math.round(this.newPosition * 100.0)/100.0;
         return "Estación actual: " + this.newPosition;
     }
-
-    @Override
-    public String checkStatus() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
 
 }
