@@ -47,6 +47,25 @@ public class Radio implements IRatio {
     }
 
     @Override
+    public String checkFavs() {
+        double[] estaciones;
+        String respuesta = "";
+        if(this.frecuencia)
+            estaciones = control_remoto_fm;
+        else
+            estaciones = control_remoto_am;
+        for(double a: estaciones) {
+            String s = "";
+            if(a == 0)
+                s = "Sin asignación";
+            else
+                s = String.valueOf(a);
+            respuesta = respuesta + " - " + s;
+        }
+        return respuesta;
+    }
+
+    @Override
     public String saveStation(int numero_estacion) {
         if(this.frecuencia)
             this.control_remoto_fm[numero_estacion] = this.newPosition;    

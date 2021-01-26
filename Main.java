@@ -95,6 +95,7 @@ public class Main {
                     /*
                     * Presentamos el menú        
                     */
+                    System.out.println(radio.checkFavs());
                     System.out.println("Seleccione una opcion del 1 al 12: ");
                         try {
                             /*
